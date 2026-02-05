@@ -23,6 +23,7 @@ jobs:
       run: cmake --build build --config Release
 
     - name: List build folder
+      shell: bash
       run: |
         echo "Files in build folder:"
         ls -l build
