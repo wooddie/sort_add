@@ -10,16 +10,32 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Checkout
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Configure
+    - name: Configure CMake
       run: cmake -S . -B build
 
     - name: Build
       run: cmake --build build --config Release
+
+    - name: List build folder
+      run: |
+        echo "Files in build folder:"
+        ls -l build
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          ls -l build/Release
+        fi
+
+    - name: Upload binaries
+      uses: actions/upload-artifact@v3
+      with:
+        name: sort_add-binaries
+        path: |
+          build/sort_add          # macOS
+          build/Release/*          # Windows
