@@ -31,10 +31,16 @@ jobs:
           ls -l build/Release
         fi
 
-    - name: Upload binaries
+    - name: Upload binaries (macOS)
+      if: matrix.os == 'macos-latest'
       uses: actions/upload-artifact@v4
       with:
-        name: sort_add-binaries
-        path: |
-          build/sort_add        # macOS
-          build/Release/*        # Windows
+        name: sort_add-macos
+        path: build/sort_add
+
+    - name: Upload binaries (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: sort_add-win
+        path: build/Release/*
