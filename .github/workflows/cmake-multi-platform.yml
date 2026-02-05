@@ -1,6 +1,4 @@
-# This starter workflow is for a CMake project running on multiple platforms. There is a different starter workflow if you just want a single platform.
-# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-single-platform.yml
-name: CMake on multiple platforms
+name: Build C++ binaries
 
 on:
   push:
@@ -33,9 +31,9 @@ jobs:
         fi
 
     - name: Upload binaries
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: sort_add-binaries
         path: |
-          build/sort_add          # macOS
-          build/Release/*          # Windows
+          build/sort_add        # macOS
+          build/Release/*        # Windows
