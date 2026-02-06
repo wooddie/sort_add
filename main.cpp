@@ -71,3 +71,8 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+/*
+*   excel formula
+*   =ЕСЛИ(A1<>""; ТЕКСТ(A1; "000000000000"); "")
+*/
